@@ -12,7 +12,8 @@ public class Cart
         return new ArrayList<>(products); // Повертаємо копію списку, щоб запобігти змінам ззовні
     }
 
-    public List<Order> getOrderHistory() {
+    public List<Order> getOrderHistory()
+    {
         return new ArrayList<>(orderHistory);
     }
 
@@ -40,31 +41,39 @@ public class Cart
     public double getTotalPrice()
     {
         double total = 0;
-        for (Product product : products) {
+        for (Product product : products)
+        {
             total += product.getPrice();
         }
         return total;
     }
 
-    public void clear() {
+    public void clear()
+    {
         products.clear(); // Очищення списку товарів у кошику
     }
 
-    public void placeOrder() {
-        if (!products.isEmpty()) {
+    public void placeOrder()
+    {
+        if (!products.isEmpty())
+        {
             Order newOrder = new Order(this); // Використання конструктора з Cart
-            orderHistory.add(newOrder); // Додавання замовлення до історії
-            clear(); // Очищення кошика після оформлення замовлення
-        } else {
+            orderHistory.add(newOrder);
+            clear();
+        } else
+        {
             System.out.println("Кошик порожній! Оформити замовлення неможливо.");
         }
     }
 
-    public List<Product> searchProducts(String query) {
+    public List<Product> searchProducts(String query)
+    {
         List<Product> result = new ArrayList<>();
-        for (Product product : products) {
+        for (Product product : products)
+        {
             if (product.getName().toLowerCase().contains(query.toLowerCase()) ||
-                    product.getCategory().getName().toLowerCase().contains(query.toLowerCase())) {
+                    product.getCategory().getName().toLowerCase().contains(query.toLowerCase()))
+            {
                 result.add(product);
             }
         }

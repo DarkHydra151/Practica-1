@@ -3,8 +3,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class Main
+{
+    public static void main(String[] args)
+    {
         Scanner scanner = new Scanner(System.in);
 
         // Створення категорій
@@ -24,7 +26,8 @@ public class Main {
         Cart cart = new Cart();
 
         // Цикл для вибору дій
-        while (true) {
+        while (true)
+        {
             System.out.println("\nВиберіть опцію:");
             System.out.println("1 - Переглянути список товарів");
             System.out.println("2 - Додати товар до кошика");
@@ -32,6 +35,7 @@ public class Main {
             System.out.println("4 - Зробити замовлення");
             System.out.println("5 - Переглянути історію замовлень");
             System.out.println("6 - Пошук товарів");
+            System.out.println("7 - Видалити товар з кошика");
             System.out.println("0 - Вийти");
 
             int choice = scanner.nextInt();
@@ -55,16 +59,18 @@ public class Main {
                     System.out.println(cart);
                     break;
                 case 4:
-                    if (cart.getProducts().isEmpty()) {
+                    if (cart.getProducts().isEmpty())
+                    {
                         System.out.println("Кошик порожній. Додайте товари перед оформленням замовлення.");
                     } else {
-                        cart.placeOrder(); // Використовуємо placeOrder замість створення нового замовлення вручну
+                        cart.placeOrder();
                         System.out.println("Замовлення оформлено.");
                     }
                     break;
                 case 5:
                     System.out.println("Історія замовлень:");
-                    for (Order order : cart.getOrderHistory()) {
+                    for (Order order : cart.getOrderHistory())
+                    {
                         System.out.println(order);
                     }
                     break;
@@ -88,6 +94,28 @@ public class Main {
                         for (Product product : searchResults) {
                             System.out.println(product);
                         }
+                    }
+                    break;
+                case 7:
+                    System.out.println("Введіть ID товару для видалення з кошика:");
+                    int removeId = scanner.nextInt();
+                    boolean productFound = false;
+
+                    // Видалення товару з кошика
+                    for (Product product : cart.getProducts())
+                    {
+                        if (product.getId() == removeId)
+                        {
+                            cart.removeProduct(product);
+                            System.out.println("Товар успішно видалено.");
+                            productFound = true;
+                            break;
+                        }
+                    }
+
+                    if (!productFound)
+                    {
+                        System.out.println("Товар з таким ID не знайдено в кошику.");
                     }
                     break;
 
